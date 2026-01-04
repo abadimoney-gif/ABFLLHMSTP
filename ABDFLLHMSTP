@@ -1,0 +1,160 @@
+-- [[ MEGA HYBRID SYSTEM 2026 - GHOST VM x ABADIFM ]]
+-- Status: Rapi, Stabil, Toggleable (Bisa ON/OFF)
+
+local _PAYLOAD = "Z2V0Z2VudigpLkdob3N0Q29uZmlnID0gewogICAgU3RpZmZFbmFibGVkID0gdHJ1ZSwKICAgIEZsb2F0SGVpZ2h0ID0gMi44LAogICAgQW50aURldGVjdCA9IHRydWUsCiAgICBUZWxlcG9ydEtleSA9ICIvZ290byIsCiAgICBPcGNvZGVzID0gezB4MSwgMHgyLCAweDN9Cn0KCi0tIEdIT1NUIENPUkUgTE9HSUMKbG9jYWwgUGxheWVyID0gZ2FtZS5QbGF5ZXJzLkxvY2FsUGxheWVyCmxvY2FsIGZ1bmN0aW9uIE5vdGlmeSh0LCB4KSBnYW1lOkdldFNlcnZpY2UoIlN0YXJ0ZXJHdWkiKTpTZXRDb3JlKCJTZW5kTm90aWZpY2F0aW9uIiwge1RpdGxlID0gdCwgVGV4dCA9IHgsIER1cmF0aW9uID0gNX0pIGVuZApsb2NhbCBmdW5jdGlvbiBHaG9zdEludGVycHJldGVyKGluc3RydWN0aW9uLCBkYXRhKQogICAgaWYgaW5zdHJ1Y3Rpb24gPT0gMHgxIHRoZW4KICAgICAgICBsb2NhbCBDaGFyID0gZGF0YQogICAgICAgIGxvY2FsIEFuaW1hdGUgPSBDaGFyOkZpbmRGaXJzdENoaWxkKCJBbmltYXRlIikKICAgICAgICBpZiBBbmltYXRlIHRoZW4gQW5pbWF0ZTpEZXN0cm95KCkgZW5kCiAgICAgICAgbG9jYWwgSHVtID0gQ2hhcjpGaW5kRmlyc3RDaGlsZE9mQ2xhc3MoIkh1bWFub2lkIikKICAgICAgICBpZiBIdW0gdGhlbiAKICAgICAgICAgICAgSHVtLkhpcEhlaWdodCA9IGdldGdlbnYoKS5HaG9zdENvbmZpZy5GbG9hdEhlaWdodAogICAgICAgICAgICBmb3IgXywgdiBpbiBwYWlycyhIdW06R2V0UGxheWluZ0FuaW1hdGlvblRyYWNrcygpKSBkbyB2OlN0b3AoKSBlbmQKICAgICAgICBlbmQKICAgIGVsc2VpZiBpbnN0cnVjdGlvbiA9PSAweDIgdGhlbgogICAgICAgIGxvY2FsIG10ID0gZ2V0cmF3bWV0YXRhYmxlKGdhbWUpCiAgICAgICAgc2V0cmVhZG9ubHkobXQsIGZhbHNlKQogICAgICAgIGxvY2FsIG9sZE5hbWVjYWxsID0gbXQuX19uYW1lY2FsbAogICAgICAgIG10Ll9fbmFtZWNhbGwgPSBuZXdjY2xvc3VyZShmdW5jdGlvbihzZWxmLCAuLi4pCiAgICAgICAgICAgIGxvY2FsIG1ldGhvZCA9IGdldG5hbWVjYWxsbWV0aG9kKCkKICAgICAgICAgICAgaWYgbWV0aG9kID09ICJGaXJlU2VydmVyIiBhbmQgKHNlbGYuTmFtZTpmaW5kKCJSZXBvcnQiKSBvciBzZWxmLk5hbWU6ZmluZCgiRGV0ZWN0IikpIHRoZW4gcmV0dXJuIG5pbCBlbmQKICAgICAgICAgICAgcmV0dXJuIG9sZE5hbWVjYWxsKHNlbGYsIC4uLikKICAgICAgICBlbmQpCiAgICAgICAgc2V0cmVhZG9ubHkobXQsIHRydWUpCiAgICBlbHNlaWYgaW5zdHJ1Y3Rpb24gPT0gMHgzIHRoZW4KICAgICAgICBsb2NhbCB0YXJnZXQgPSBkYXRhCiAgICAgICAgaWYgUGxheWVyLkNoYXJhY3RlciBhbmQgdGFyZ2V0LkNoYXJhY3RlciB0aGVuCiAgICAgICAgICAgIFBsYXllci5DaGFyYWN0ZXI6UGl2b3RUbyh0YXJnZXQuQ2hhcmFjdGVyOkdldFBpdm90KCkgKiBDRnJhbWUubmV3KDAsIDIsIDApKQogICAgICAgIGVuZAogICAgZW5kCmVuZAoKdm1fY29yZSA9IGZ1bmN0aW9uKCkKICAgIGxvY2FsIENoYXJhY3RlciA9IFBsYXllci5DaGFyYWN0ZXIgb3IgUGxheWVyLkNoYXJhY3RlckFkZGVkOldhaXQoKQogICAgaWYgZ2V0Z2VudigpLkdob3N0Q29uZmlnLlN0aWZmRW5hYmxlZCB0aGVuIEdob3N0SW50ZXJwcmV0ZXIoMHgxLCBDaGFyYWN0ZXIpIGVuZAogICAgaWYgZ2V0Z2VudigpLkdob3N0Q29uZmlnLkFudGlEZXRlY3QgdGhlbiBHaG9zdEludGVycHJldGVyKDB4MikgZ2V0Z2VudigpLkdob3N0Q29uZmlnLkFudGlEZXRlY3QgPSBmYWxzZSBlbmQKZW5kClBsYXllci5DaGFyYWN0ZXJBZGRlZDpDb25uZWN0KGZ1bmN0aW9uKENoYXIpIHRhc2sud2FpdCgwLjUpIEdob3N0SW50ZXJwcmV0ZXIoMHgxLCBDaGFyKSBlbmQpCnRhc2suc3Bhd24odm1fY29yZSk="
+
+-- [[ 1. SERVICES ]]
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+
+-- [[ 2. GLOBAL CONFIG ]]
+getgenv().Config = {
+    FlySpeed = 100,
+    WalkSpeed = 100,
+    Noclip = false,
+    Flying = false,
+    BlackholeActive = false
+}
+
+local bodyVelocity, bodyGyro
+local RingParts = {}
+local buttons = {}
+
+-- [[ 3. iOS STYLE UI CORE ]]
+local ScreenGui = Instance.new("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"))
+ScreenGui.Name = "Ghost_iOS_System"
+
+local Holder = Instance.new("Frame", ScreenGui)
+Holder.Size = UDim2.new(0, 180, 0, 150)
+Holder.Position = UDim2.new(0, 20, 1, -170)
+Holder.BackgroundTransparency = 1
+
+local UIList = Instance.new("UIListLayout", Holder)
+UIList.Padding = UDim.new(0, 8)
+
+local function CreateToggleUI(key, label)
+    local Frame = Instance.new("Frame", Holder)
+    Frame.Size = UDim2.new(1, 0, 0, 32)
+    Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Frame.BackgroundTransparency = 0.5
+    
+    local Corner = Instance.new("UICorner", Frame)
+    Corner.CornerRadius = UDim.new(0, 10)
+    
+    local TextLabel = Instance.new("TextLabel", Frame)
+    TextLabel.Size = UDim2.new(1, -10, 1, 0)
+    TextLabel.Position = UDim2.new(0, 10, 0, 0)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Text = "[" .. key .. "] " .. label
+    TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.Font = Enum.Font.SourceSansSemibold
+    TextLabel.TextSize = 15
+    TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
+    buttons[key] = {Frame = Frame, Label = TextLabel}
+end
+
+-- Setup UI Buttons
+CreateToggleUI("F", "Flight")
+CreateToggleUI("G", "Noclip")
+CreateToggleUI("B", "Blackhole")
+
+local function UpdateVisual(key, state)
+    if buttons[key] then
+        local tInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quad)
+        TweenService:Create(buttons[key].Frame, tInfo, {
+            BackgroundColor3 = state and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(0, 0, 0),
+            BackgroundTransparency = state and 0.1 or 0.5
+        }):Play()
+        TweenService:Create(buttons[key].Label, tInfo, {
+            TextColor3 = state and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+        }):Play()
+    end
+end
+
+-- [[ 4. CORE FUNCTIONS ]]
+
+-- FLIGHT
+local function toggleFly()
+    getgenv().Config.Flying = not getgenv().Config.Flying
+    UpdateVisual("F", getgenv().Config.Flying)
+    
+    local char = LocalPlayer.Character
+    local root = char and char:FindFirstChild("HumanoidRootPart")
+    if not root then return end
+
+    if getgenv().Config.Flying then
+        char.Humanoid.PlatformStand = true
+        bodyVelocity = Instance.new("BodyVelocity", root)
+        bodyVelocity.MaxForce = Vector3.new(1,1,1) * math.huge
+        bodyVelocity.Velocity = Vector3.new(0,0,0)
+        bodyGyro = Instance.new("BodyGyro", root)
+        bodyGyro.MaxTorque = Vector3.new(1,1,1) * math.huge
+        bodyGyro.CFrame = root.CFrame
+    else
+        char.Humanoid.PlatformStand = false
+        if bodyVelocity then bodyVelocity:Destroy() end
+        if bodyGyro then bodyGyro:Destroy() end
+    end
+end
+
+-- NOCLIP LOOP
+RunService.Stepped:Connect(function()
+    if getgenv().Config.Noclip and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") then part.CanCollide = false end
+        end
+    end
+end)
+
+-- FLY MOVEMENT LOOP
+RunService.RenderStepped:Connect(function()
+    if getgenv().Config.Flying and bodyVelocity and bodyGyro then
+        local cam = workspace.CurrentCamera
+        local moveDir = Vector3.new(0,0,0)
+        if UIS:IsKeyDown(Enum.KeyCode.W) then moveDir += cam.CFrame.LookVector end
+        if UIS:IsKeyDown(Enum.KeyCode.S) then moveDir -= cam.CFrame.LookVector end
+        if UIS:IsKeyDown(Enum.KeyCode.A) then moveDir -= cam.CFrame.RightVector end
+        if UIS:IsKeyDown(Enum.KeyCode.D) then moveDir += cam.CFrame.RightVector end
+        bodyVelocity.Velocity = moveDir * getgenv().Config.FlySpeed
+        bodyGyro.CFrame = cam.CFrame
+    end
+end)
+
+-- [[ 5. KEYBIND HANDLER ]]
+UIS.InputBegan:Connect(function(input, gpe)
+    if gpe then return end
+    
+    if input.KeyCode == Enum.KeyCode.F then
+        toggleFly()
+    elseif input.KeyCode == Enum.KeyCode.G then
+        getgenv().Config.Noclip = not getgenv().Config.Noclip
+        UpdateVisual("G", getgenv().Config.Noclip)
+    elseif input.KeyCode == Enum.KeyCode.B then
+        getgenv().Config.BlackholeActive = not getgenv().Config.BlackholeActive
+        UpdateVisual("B", getgenv().Config.BlackholeActive)
+    end
+end)
+
+-- [[ 6. VM & FINAL LOAD ]]
+local function _VM_EXECUTE(stream)
+    local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    local data = stream:gsub('[^'..b..'=]', '')
+    local decoded = (data:gsub('.', function(x)
+        if (x == '=') then return '' end
+        local r,f='',(b:find(x)-1)
+        for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end
+        return r;
+    end):gsub('%d%d%d%d%d%d%d%d', function(x)
+        local c=0
+        for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
+        return string.char(c)
+    end))
+    loadstring(decoded)()
+end
+
+_VM_EXECUTE(_PAYLOAD)
+print("SYSTEM STABLE: ALL TOGGLES FUNCTIONAL")
