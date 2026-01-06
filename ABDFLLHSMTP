@@ -1,0 +1,128 @@
+-- [[ MEGA INTEGRATED SYSTEM 2026 - GHOST VM & SMOOTH FALL EDITION ]]
+-- Merged & Optimized with Stealth Integration
+
+-- [[ 0x1: CONFIGURATION STORAGE ]]
+getgenv().GhostConfig = {
+    StiffEnabled = true,
+    FloatHeight = 2.8,
+    AntiDetect = true,
+    TeleportKey = "/goto",
+    FlySpeed = 100,
+    WalkSpeed = 100,
+    JumpPower = 150, 
+    InfiniteJump = true,
+    InvisibleActive = false, -- [NEW] Status Invisible
+    HitboxSize = 25,
+    -- Smooth Fall Config
+    SmoothFallEnabled = true,
+    FallSpeed = -12, 
+    Opcodes = {0x1, 0x2, 0x3, 0x4}
+}
+
+-- [[ 0x2: SERVICES ]]
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UIS = game:GetService("UserInputService")
+local StarterGui = game:GetService("StarterGui")
+local LocalPlayer = Players.LocalPlayer
+
+-- [[ 0x3: UI NOTIFICATION ]]
+local function Notify(title, text)
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = title,
+            Text = text,
+            Duration = 5
+        })
+    end)
+end
+
+-- Update HUD (Menambahkan K: Invisible)
+local ScreenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+local KeybindFrame = Instance.new("TextLabel", ScreenGui)
+KeybindFrame.Size = UDim2.new(0, 250, 0, 150)
+KeybindFrame.Position = UDim2.new(0, 10, 1, -160)
+KeybindFrame.BackgroundTransparency = 1
+KeybindFrame.Text = " [ KEYBINDS ]\n F: Fly | G: Noclip\n B: Blackhole | H: ServerHop\n J: Inf Jump | K: Invisible\n P: Remote Scan\n RMB: Aimlock"
+KeybindFrame.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeybindFrame.TextStrokeTransparency = 0
+KeybindFrame.TextXAlignment = Enum.TextXAlignment.Left
+KeybindFrame.Font = Enum.Font.Code
+KeybindFrame.TextSize = 14
+
+-- [[ 0x4: CORE INTERPRETER (VM) ]]
+local function GhostInterpreter(instruction, data)
+    if instruction == 0x1 then -- [[ STIFF & SMOOTH FALL SETUP ]]
+        local Char = data
+        if not Char then return end
+        
+        local RootPart = Char:WaitForChild("HumanoidRootPart", 5)
+        if RootPart then
+            if RootPart:FindFirstChild("SmoothFallBV") then RootPart.SmoothFallBV:Destroy() end
+            local bv = Instance.new("BodyVelocity", RootPart)
+            bv.Name = "SmoothFallBV"
+            bv.MaxForce = Vector3.new(0, 0, 0)
+            bv.Velocity = Vector3.new(0, getgenv().GhostConfig.FallSpeed, 0)
+        end
+
+        if getgenv().GhostConfig.StiffEnabled then
+            local Animate = Char:FindFirstChild("Animate")
+            if Animate then Animate:Destroy() end
+        end
+
+    elseif instruction == 0x4 then -- [[ EXTERNAL STEALTH LOAD ]]
+        Notify("STEALTH SYSTEM", "Mengaktifkan Invisible Script...")
+        task.spawn(function()
+            -- Menjalankan script invisible tanpa menghentikan thread utama Ghost VM
+            pcall(function()
+                loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-invisible-Script-82469"))()
+            end)
+        end)
+    end
+end
+
+-- [[ 0x8: INPUT HANDLER ]]
+UIS.InputBegan:Connect(function(input, gpe)
+    -- Logic Space untuk Inf Jump (Independent)
+    if input.KeyCode == Enum.KeyCode.Space then
+        if getgenv().GhostConfig.InfiniteJump and not getgenv().GhostConfig.Flying then
+            local Hum = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if Hum then Hum:ChangeState(Enum.HumanoidStateType.Jumping) end
+        end
+    end
+
+    if gpe then return end
+    
+    -- Handle Keybinds
+    if input.KeyCode == Enum.KeyCode.K then
+        -- Menjalankan script invisible eksternal
+        GhostInterpreter(0x4)
+    elseif input.KeyCode == Enum.KeyCode.F then 
+        -- Logic Fly Anda... (tetap sama)
+        getgenv().GhostConfig.Flying = not getgenv().GhostConfig.Flying
+        local root = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if getgenv().GhostConfig.Flying then
+            local bv = Instance.new("BodyVelocity", root)
+            bv.Name = "GhostFly"
+            bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+            local bg = Instance.new("BodyGyro", root)
+            bg.Name = "GhostGyro"
+            bg.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+        else
+            if root:FindFirstChild("GhostFly") then root.GhostFly:Destroy() end
+            if root:FindFirstChild("GhostGyro") then root.GhostGyro:Destroy() end
+        end
+    elseif input.KeyCode == Enum.KeyCode.J then
+        getgenv().GhostConfig.InfiniteJump = not getgenv().GhostConfig.InfiniteJump
+        Notify("SYSTEM", "Infinite Jump: " .. tostring(getgenv().GhostConfig.InfiniteJump))
+    end
+end)
+
+-- [[ 0x9: INITIALIZATION ]]
+local function Init()
+    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+    GhostInterpreter(0x1, Character)
+    Notify("SYSTEM READY", "Ghost VM + Stealth Module Loaded")
+end
+
+task.spawn(Init)
